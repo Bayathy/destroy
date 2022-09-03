@@ -6,7 +6,7 @@ import { Box } from "../../atoms/Box";
 
 export const Modal: React.FC<Component<"div">> = ({ children, css, ...rest }) => {
     return (
-        <Box css={[tw`fixed top-0 left-0 right-0 bottom-0 m-auto width[90svh]`, css]} {...rest} limited>
+        <Box css={[tw`fixed w-screen flex items-center justify-center h-screen inset-0 m-auto bg-black/[.6]`, css]} {...rest}>
             {children}
         </Box>
     )

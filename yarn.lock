@@ -760,6 +760,7 @@ __metadata:
     prettier: ^2.7.1
     react: 18.2.0
     react-dom: 18.2.0
+    react-hook-form: ^7.34.2
     react-leaflet: ^4.0.2
     tailwindcss: ^3.1.8
     twin.macro: ^2.8.2
@@ -3940,6 +3941,15 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 7d323310bea3a91be2965f9468d552f201b1c27891e45ddc2d6b8f717680c95a75ae0bc1e3f5cf41472446a2589a75aed4483aee8169287909fcd59ad149e8cc
+  languageName: node
+  linkType: hard
+
+"react-hook-form@npm:^7.34.2":
+  version: 7.34.2
+  resolution: "react-hook-form@npm:7.34.2"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 485cde0248e668ad1845b927f9cc05b434c384141bb03bc143a7d7cc937eebf119c935114ccbfa397b463808283dab5b2334022fe5dba975402b201e601d6876
   languageName: node
   linkType: hard
 

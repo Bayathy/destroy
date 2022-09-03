@@ -35,7 +35,7 @@ export const MapBox: React.FC = () => {
    }, [])
 
    return (
-      <Box css={tw`mx-auto mb-1`} limited>
+      <Box css={tw`mx-auto mb-1 z-0 relative`} limited>
          {location &&
             <MapContainer
                center={location}
