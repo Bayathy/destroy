@@ -36,7 +36,7 @@ export const MapBox: React.FC = () => {
 
    return (
       <Box css={tw`mx-auto mb-1 z-0 relative`} limited>
-         {location &&
+         {location && (
             <MapContainer
                center={location}
                zoom={30}
@@ -51,9 +51,9 @@ export const MapBox: React.FC = () => {
                   <Popup>
                      <button
                         css={css`
-                     color: aqua;
-                     padding: 10rem;
-                  `}
+                           color: aqua;
+                           padding: 10rem;
+                        `}
                         onClick={() => alert('aaaa')}
                      >
                         button
@@ -64,7 +64,7 @@ export const MapBox: React.FC = () => {
                   <Popup>Popup in CircleMarker</Popup>
                </CircleMarker>
             </MapContainer>
-         }
+         )}
       </Box>
    )
 }

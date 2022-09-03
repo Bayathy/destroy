@@ -12,9 +12,15 @@ const MyAwesomeMap = dynamic<{}>(
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
 
-
    return (
-      <HomeLayout Headertitle='GorouMap' leftButton='/' rightButton={() => { setModalOpen(!isModalOpen) }} isModalOpen={isModalOpen}>
+      <HomeLayout
+         Headertitle="GorouMap"
+         leftButton="/"
+         rightButton={() => {
+            setModalOpen(!isModalOpen)
+         }}
+         isModalOpen={isModalOpen}
+      >
          <MyAwesomeMap />
       </HomeLayout>
    )

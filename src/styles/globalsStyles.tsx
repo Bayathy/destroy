@@ -7,14 +7,14 @@ const customStyles = css(css`
       background-color: #d8d8d4;
       box-sizing: border-box;
       list-style: none;
-      font-family: "Inter", sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 16px;
       font-weight: 500;
    }
    li {
       list-style: none;
    }
- `)
+`)
 
 const GlobalStyles = () => (
    <>
