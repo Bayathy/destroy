@@ -10,7 +10,7 @@ export const HomeLayout: React.FC<HomeLayout> = ({ children }) => {
     return (
         <>
             <Header />
-            <main>
+            <main id="mainroot">
                 {children}
             </main>
         </>
