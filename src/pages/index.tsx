@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 
 
    return (
-      <HomeLayout Headertitle='GorouMap' leftButton='/' rightButton={() => { setModalopen(!isModalOpen) }} isModalOpen={isModalOpen}>
+      <HomeLayout Headertitle='GorouMap' leftButton='/' rightButton={() => { setModalOpen(!isModalOpen) }} isModalOpen={isModalOpen}>
          <MyAwesomeMap />
       </HomeLayout>
    )

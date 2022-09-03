@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import tw from "twin.macro";
 import { Component } from "../../../model/component";
 import { Box } from "../../atoms/Box";
@@ -12,5 +13,16 @@ export const Modal: React.FC<Component<"div">> = ({ children, css, ...rest }) =>
 }
 
 export const Portal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    return ReactDOM.createPortal(children, document.querySelector("#root"))
+    const [showPortal, setShowPortal] = useState(false);
+
+    useEffect(() => {
+        setShowPortal(true);
+    }, []);
+
+    if (!showPortal) {
+        // eslint-disable-next-line unicorn/no-null
+        return null;
+    }
+    // eslint-disable-next-line unicorn/prefer-query-selector
+    return ReactDOM.createPortal(children, document.getElementById("__next")!)
 }
