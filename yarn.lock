@@ -337,6 +337,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@iconify/react@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "@iconify/react@npm:3.2.2"
+  peerDependencies:
+    react: ">=16"
+  checksum: 8b52e1291d7e6c9422ab49eabd6c3bbb29cb852578c08616dd66a2b0e64aad4579ea3e8a6a3881d9d25d363eada16940e78477806fa36cfd98c0cd79778d7d0f
+  languageName: node
+  linkType: hard
+
 "@next/env@npm:12.2.5":
   version: 12.2.5
   resolution: "@next/env@npm:12.2.5"
@@ -735,6 +744,7 @@ __metadata:
     "@emotion/react": ^11.10.4
     "@emotion/server": ^11.10.0
     "@emotion/styled": ^11.10.4
+    "@iconify/react": ^3.2.2
     "@types/leaflet": ^1.7.11
     "@types/node": 18.7.14
     "@types/react": 18.0.18
