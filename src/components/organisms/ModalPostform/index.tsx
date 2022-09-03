@@ -4,24 +4,17 @@ import { Box } from '../../atoms/Box'
 import { Text } from '../../atoms/Text'
 import { Icon } from '@iconify/react'
 import { Button } from '../../atoms/Button'
-import { SubmitHandler, useForm } from 'react-hook-form'
-
-type Inputs = {
-   example: string
-   exampleRequired: string
-}
-
-const onSubmit: SubmitHandler<Inputs> = (data) => {
-   console.log(data)
-}
+import { Controller, useForm } from 'react-hook-form'
+import Select from 'react-select'
 
 export const ModalPostform: React.FC = () => {
-   const {
-      register,
-      handleSubmit,
-      watch,
-      formState: { errors }
-   } = useForm<Inputs>()
+   const { control } = useForm()
+
+   const options = [
+      { value: '1_value', label: '1_label' },
+      { value: '2_value', label: '2_label' },
+      { value: '3_value', label: '3_label' }
+   ]
 
    return (
       <Box
@@ -36,10 +29,17 @@ export const ModalPostform: React.FC = () => {
          <Box>
             <Text css={tw`text-center text-2xl`}>投稿する</Text>
          </Box>
-         <form onSubmit={handleSubmit(onSubmit)}>
-            <input defaultValue="test" {...register('example')} />
-            <input {...register('exampleRequired', { required: true })} />
-            <input type="submit" />
+         <form>
+            <Controller
+               name="selectValue"
+               rules={{ required: true }}
+               control={control}
+               render={({ field: { onChange, onBlur, value, name, ref } }) => (
+                  <Box css={tw`w-full`}>
+                     <Select options={options} isClearable />
+                  </Box>
+               )}
+            />
          </form>
       </Box>
    )
