@@ -11,8 +11,10 @@ export const HomeLayout: React.FC<HomeLayout> = ({ children }) => {
     return (
         <>
             <Header />
-            <MenuTab />
-            {children}
+            <main>
+                <MenuTab />
+                {children}
+            </main>
         </>
     )
 }
