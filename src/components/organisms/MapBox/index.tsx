@@ -5,7 +5,7 @@ import {
    Popup,
    TileLayer
 } from 'react-leaflet'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { LatLngExpression } from 'leaflet'
 
 import L from 'leaflet'
@@ -25,36 +25,46 @@ L.Icon.Default.mergeOptions({
 })
 
 export const MapBox: React.FC = () => {
-   const position: LatLngExpression = [51.505, -0.09]
+   const [location, setLocation] = useState<LatLngExpression>()
+
+   useEffect(() => {
+      const geo = navigator.geolocation
+      geo.getCurrentPosition((pos) => {
+         setLocation([pos.coords.latitude, pos.coords.longitude])
+      })
+   }, [])
+
    return (
-      <Box css={tw`m-auto`} limited>
-         <MapContainer
-            center={position}
-            zoom={13}
-            scrollWheelZoom={false}
-            style={{ height: '80svh', width: '100%', zIndex: -10 }}
-         >
-            <TileLayer
-               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={position}>
-               <Popup>
-                  <button
-                     css={css`
+      <Box css={tw`mx-auto mb-1`} limited>
+         {location &&
+            <MapContainer
+               center={location}
+               zoom={30}
+               scrollWheelZoom={false}
+               style={{ height: '80svh' }}
+            >
+               <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+               />
+               <Marker position={location!}>
+                  <Popup>
+                     <button
+                        css={css`
                      color: aqua;
                      padding: 10rem;
                   `}
-                     onClick={() => alert('aaaa')}
-                  >
-                     button
-                  </button>
-               </Popup>
-            </Marker>
-            <CircleMarker center={[51.51, -0.12]} radius={3}>
-               <Popup>Popup in CircleMarker</Popup>
-            </CircleMarker>
-         </MapContainer>
+                        onClick={() => alert('aaaa')}
+                     >
+                        button
+                     </button>
+                  </Popup>
+               </Marker>
+               <CircleMarker center={[51.51, -0.12]} radius={3}>
+                  <Popup>Popup in CircleMarker</Popup>
+               </CircleMarker>
+            </MapContainer>
+         }
       </Box>
    )
 }

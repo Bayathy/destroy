@@ -11,6 +11,9 @@ const customStyles = css(css`
       font-size: 16px;
       font-weight: 500;
    }
+   li {
+      list-style: none;
+   }
  `)
 
 const GlobalStyles = () => (
