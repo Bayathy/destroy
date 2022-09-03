@@ -1,0 +1,14 @@
+env:
+  browser: true
+  es2021: true
+extends:
+  - bayathy
+parser: "@typescript-eslint/parser"
+parserOptions:
+  project: ./tsconfig.json
+
+rules:
+  "import/export": off
+  "unicorn/prefer-export-from": off
+  "no-unused-vars": off
+  "unicorn/prefer-node-protocol": off

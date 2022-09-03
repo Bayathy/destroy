@@ -1,14 +1,18 @@
 {
-  "name": "tg-front",
+  "name": "GrourMap",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src/**/* && prettier src/**/*",
+    "fix": "eslint  src/**/* --fix && prettier -w src/**/*"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -17,8 +21,16 @@
     "@types/node": "18.7.14",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",
-    "eslint": "8.23.0",
+    "autoprefixer": "^10.4.8",
+    "babel-plugin-macros": "^3.1.0",
+    "eslint": "8.22.0",
+    "eslint-config-bayathy": "^1.0.11",
     "eslint-config-next": "12.2.5",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.8",
+    "twin.macro": "^2.8.2",
     "typescript": "4.8.2"
-  }
+  },
+  "packageManager": "yarn@3.2.3"
 }
