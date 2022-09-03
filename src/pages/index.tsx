@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
+import { useState } from 'react'
 import { HomeLayout } from '../components/template/HomeLayout'
 // eslint-disable-next-line @typescript-eslint/ban-types
 const MyAwesomeMap = dynamic<{}>(
@@ -9,8 +10,11 @@ const MyAwesomeMap = dynamic<{}>(
 )
 
 const Home: NextPage = () => {
+   const [isModalOpen, setModalOpen] = useState<boolean>(false)
+
+
    return (
-      <HomeLayout>
+      <HomeLayout Headertitle='GorouMap' leftButton='/' rightButton={() => { setModalopen(!isModalOpen) }} isModalOpen={isModalOpen}>
          <MyAwesomeMap />
       </HomeLayout>
    )
