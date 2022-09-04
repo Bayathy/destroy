@@ -26,7 +26,7 @@ const Home: NextPage = () => {
          )
          setfid(res.data.fid)
          setReslogo(res.data.logo)
-         setResAccess(res.data.accesses)
+         setResAccess(res.data.accesses as number[])
       })
    }, [])
 
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
                   setModalOpen(false)
                }}
                isHomeLayout={true}
-               accesses={resAccess}
+               accesses={resAccess!}
             >
                <MyAwesomeMap />
             </HomeLayout>
