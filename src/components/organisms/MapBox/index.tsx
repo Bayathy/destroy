@@ -1,4 +1,10 @@
-import { CircleMarker, MapContainer, Popup, TileLayer } from 'react-leaflet'
+import {
+   CircleMarker,
+   MapContainer,
+   Marker,
+   Popup,
+   TileLayer
+} from 'react-leaflet'
 import React, { useEffect, useState } from 'react'
 import { LatLngExpression } from 'leaflet'
 
@@ -18,7 +24,7 @@ L.Icon.Default.mergeOptions({
 })
 
 export const MapBox: React.FC = () => {
-   const [location, setLocation] = useState<LatLngExpression>()
+   const [location, setLocation] = useState<LatLngExpression>([35.6555, 139.76])
 
    useEffect(() => {
       const geo = navigator.geolocation
@@ -34,12 +40,27 @@ export const MapBox: React.FC = () => {
                center={location}
                zoom={30}
                scrollWheelZoom={false}
-               style={{ height: '80svh' }}
+               style={{ height: '80vh' }}
             >
                <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                />
+               <Marker position={location}>
+                  <Popup>
+                     <button onClick={() => { alert("aaa") }}>
+                        <div css={tw`width[20vh] relative`}>
+                           <img
+                              src="https://storage.googleapis.com/gourmap_bucket/reviewimages/92dac206-ecca-493d-983b-c05daeee7a6c.png"
+                              alt="foodpic"
+                           ></img>
+                           <div css={tw`m-auto w-4/5 h-auto text-center my-1 text-2xl rounded-2xl bg-blue-300`}>
+                              test
+                           </div>
+                        </div>
+                     </button>
+                  </Popup>
+               </Marker>
                <CircleMarker center={location} radius={3}>
                   <Popup>Popup in CircleMarker</Popup>
                </CircleMarker>

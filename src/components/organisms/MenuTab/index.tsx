@@ -16,11 +16,17 @@ export const MenuTab: React.FC<MenuTabProparty> = ({
       <nav css={tw`h-1/2`}>
          <Box css={[tw`m-auto h-full`]} limited>
             <ol css={tw`flex h-full justify-around w-full`}>
-               <li css={tw`w-2/5 h-2/3 m-auto bg-white rounded-2xl`}>
-                  <Anchor href={leftButton ?? './'}>Button</Anchor>
+               <li
+                  css={tw`w-2/5 h-2/3 m-auto bg-white rounded-2xl flex justify-center items-center`}
+               >
+                  <Anchor css={tw`block text-center`} href={leftButton ?? './'}>
+                     レポ一覧
+                  </Anchor>
                </li>
-               <li css={tw`w-2/5 h-2/3 m-auto bg-white rounded-2xl`}>
-                  <button onClick={rightButton}>Button</button>
+               <li
+                  css={tw`w-2/5 h-2/3 m-auto bg-white rounded-2xl flex items-center justify-center`}
+               >
+                  <button onClick={rightButton}>レポる</button>
                </li>
             </ol>
          </Box>
