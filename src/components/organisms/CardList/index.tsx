@@ -1,30 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Select from 'react-select'
 import tw from 'twin.macro'
 import { Box } from '../../atoms/Box'
 import { Card } from '../../molecules/Card'
 
-export type CardListProparty = {
-    selectid?: number
-}
-
-
-export const CardList: React.FC<CardListProparty> = ({ selectid }) => {
+export const CardList: React.FC = () => {
     const reviewList = [
         { label: 'storename1', text: 'review', sid: 1 },
         { label: 'storename2', text: 'review', sid: 2 },
         { label: 'storename3', text: 'review', sid: 3 }
     ]
-
-    console.log(selectid)
     const [sortId, setsottId] = useState<number>()
-
-    useEffect(() => {
-        const id = selectid
-        setsottId(id)
-        console.log("sortid", sortId)
-
-    }, [])
 
     return (
         <Box css={tw`m-auto`} limited>
