@@ -4,7 +4,11 @@ import tw from 'twin.macro'
 import { Box } from '../../atoms/Box'
 import { Card } from '../../molecules/Card'
 
-export const CardList: React.FC = () => {
+export type CardListProparty = {
+    selectid?: number
+}
+
+export const CardList: React.FC<CardListProparty> = ({ selectid }) => {
     const reviewList = [
         { label: 'storename1', text: 'review', sid: 1 },
         { label: 'storename2', text: 'review', sid: 2 },
@@ -12,6 +16,12 @@ export const CardList: React.FC = () => {
     ]
     const [sortId, setsottId] = useState<number>()
 
+    useEffect(() => {
+        const id = selectid
+        setsottId(id)
+        console.log("sortid", sortId)
+
+    }, [])
     return (
         <Box css={tw`m-auto`} limited>
             <Select
