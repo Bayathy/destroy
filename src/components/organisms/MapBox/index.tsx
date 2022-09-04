@@ -26,19 +26,22 @@ L.Icon.Default.mergeOptions({
    shadowUrl: markerShadow.src
 })
 
-
 export const MapBox: React.FC = () => {
    const [location, setLocation] = useState<LatLngExpression>()
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
-   const [reviewPositions, setreviewPositions] = useState<{ position: number[]; color: string }[]>()
-   const [shopPositions, setshopPositions] = useState<{ position: number[]; color: string }[]>()
+   const [reviewPositions, setreviewPositions] =
+      useState<{ position: number[]; color: string }[]>()
+   const [shopPositions, setshopPositions] =
+      useState<{ position: number[]; color: string }[]>()
 
    useEffect(() => {
       const geo = navigator.geolocation
       async function getInfo() {
          await geo.getCurrentPosition(async (pos) => {
             setLocation([pos.coords.latitude, pos.coords.longitude])
-            const res = await axios.get(`https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`)
+            const res = await axios.get(
+               `https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`
+            )
             setreviewPositions(res.data.reviewpositions)
          })
       }
@@ -81,7 +84,12 @@ export const MapBox: React.FC = () => {
                </Marker>
                {reviewPositions!.map((index, key) => {
                   return (
-                     <CircleMarker pathOptions={{ color: index.color }} key={key} center={[index.position[0], index.position[1]]} radius={3} />
+                     <CircleMarker
+                        pathOptions={{ color: index.color }}
+                        key={key}
+                        center={[index.position[0], index.position[1]]}
+                        radius={3}
+                     />
                   )
                })}
             </MapContainer>

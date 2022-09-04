@@ -21,14 +21,14 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
    const [isSlect, setSelect] = useState<boolean>()
    const { control, register, handleSubmit } = useForm<FormInputs>()
 
-   const [uploadImage, setuploadImage] = useState<string>();
+   const [uploadImage, setuploadImage] = useState<string>()
 
    const handleImage = (event: any) => {
       if (!(event.target.files[0] == undefined)) {
-         const image = event.target.files[0];
-         setuploadImage(window.URL.createObjectURL(image));
+         const image = event.target.files[0]
+         setuploadImage(window.URL.createObjectURL(image))
       }
-   };
+   }
 
    const options = [
       { value: 1, label: '1_label' },
@@ -80,9 +80,13 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                         {...register('review')}
                      />
                   </label>
-                  {
-                     uploadImage && <img css={tw`my-1 object-contain height[20vh] w-full`} src={uploadImage} alt="user upload" />
-                  }
+                  {uploadImage && (
+                     <img
+                        css={tw`my-1 object-contain height[20vh] w-full`}
+                        src={uploadImage}
+                        alt="user upload"
+                     />
+                  )}
                   <label
                      css={tw`bg-blue-500 block m-auto w-1/2 text-white py-1 px-3 text-center text-sm rounded-2xl`}
                   >
