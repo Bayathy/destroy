@@ -7,8 +7,8 @@ export type HomeLayout = {
    children: React.ReactNode
    isModalOpen: boolean
 } & HeaderProparty &
-   PostformProparty &
-   FooterProperty
+   PostformProparty
+   & FooterProperty
 
 export const HomeLayout: React.FC<HomeLayout> = ({
    children,
@@ -17,7 +17,8 @@ export const HomeLayout: React.FC<HomeLayout> = ({
    leftButton,
    rightButton,
    closeAction,
-   isHomeLayout
+   isHomeLayout,
+   accesses
 }) => {
    return (
       <>
@@ -37,7 +38,7 @@ export const HomeLayout: React.FC<HomeLayout> = ({
             )}
             {children}
          </main>
-         <Footer accesses={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 8, 0]} />
+         <Footer accesses={accesses} />
       </>
    )
 }

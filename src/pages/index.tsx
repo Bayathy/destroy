@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import tw from 'twin.macro'
 import { HomeLayout } from '../components/template/HomeLayout'
 import { fidState } from '../context/fid'
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -12,7 +13,7 @@ const MyAwesomeMap = dynamic<{}>(() => import('../components/organisms/MapBox').
 
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
-   const [resData, setResData] = useState<any>()
+   const [resData, setResData] = useState<unknown>()
 
    const [, setfid] = useRecoilState(fidState)
 
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
 
    return (
       <>
-         {resData && (
+         {resData ?
             <HomeLayout
                Headertitle={resData.logo as string}
                leftButton="/List"
@@ -41,11 +42,12 @@ const Home: NextPage = () => {
                   setModalOpen(false)
                }}
                isHomeLayout={true}
-               accesses={resData.accesses!}
+               accesses={resData!.accesses!}
             >
                <MyAwesomeMap />
             </HomeLayout>
-         )}
+            : <div css={tw`w-screen h-screen flex justify-center items-center`}><p>Loading</p></div>
+         }
       </>
    )
 }
