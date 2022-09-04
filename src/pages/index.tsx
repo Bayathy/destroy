@@ -3,13 +3,11 @@ import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { MapBoxproperty } from '../components/organisms/MapBox'
 import { HomeLayout } from '../components/template/HomeLayout'
 import { fidState } from '../context/fid'
 // eslint-disable-next-line @typescript-eslint/ban-types
-const MyAwesomeMap = dynamic<MapBoxproperty>(
-   () =>
-      import('../components/organisms/MapBox').then((module) => module.MapBox),
+const MyAwesomeMap = dynamic(
+   () => import('../components/organisms/MapBox').then((module) => module.MapBox),
    { ssr: false }
 )
 
@@ -19,7 +17,7 @@ const Home: NextPage = () => {
    // eslint-disable-next-line prefer-const
    let positions: { position: number[]; color: string }[] = []
 
-   const [_, setfid] = useRecoilState(fidState);
+   const [, setfid] = useRecoilState(fidState);
 
    useEffect(() => {
       const geo = navigator.geolocation
@@ -44,7 +42,7 @@ const Home: NextPage = () => {
          }}
          isHomeLayout={true}
       >
-         <MyAwesomeMap positions={positions} />
+         <MyAwesomeMap />
       </HomeLayout>
    )
 }
