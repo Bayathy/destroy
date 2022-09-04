@@ -20,13 +20,13 @@ export const MenuTab: React.FC<MenuTabProparty> = ({
                   css={tw`w-2/5 h-2/3 m-auto bg-white rounded-2xl flex justify-center items-center`}
                >
                   <Anchor css={tw`block text-center`} href={leftButton ?? './'}>
-                     レポ一覧
+                     れぽっみる
                   </Anchor>
                </li>
                <li
                   css={tw`w-2/5 h-2/3 m-auto bg-white rounded-2xl flex items-center justify-center`}
                >
-                  <button onClick={rightButton}>レポる</button>
+                  <button onClick={rightButton}>れぽっる</button>
                </li>
             </ol>
          </Box>
