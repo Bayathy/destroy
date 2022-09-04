@@ -14,14 +14,7 @@ export const CardList: React.FC<CardListProparty> = ({ selectid }) => {
         { label: 'storename2', text: 'review', sid: 2 },
         { label: 'storename3', text: 'review', sid: 3 }
     ]
-    const [sortId, setsottId] = useState<number>()
-
-    useEffect(() => {
-        const id = selectid
-        setsottId(id)
-        console.log("sortid", sortId)
-
-    }, [])
+    const [sortId, setsottId] = useState<number>(selectid!)
     return (
         <Box css={tw`m-auto`} limited>
             <Select
