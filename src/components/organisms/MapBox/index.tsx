@@ -1,9 +1,4 @@
-import {
-   CircleMarker,
-   MapContainer,
-   Popup,
-   TileLayer
-} from 'react-leaflet'
+import { CircleMarker, MapContainer, Popup, TileLayer } from 'react-leaflet'
 import React, { useEffect, useState } from 'react'
 import { LatLngExpression } from 'leaflet'
 

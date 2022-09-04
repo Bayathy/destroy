@@ -42,9 +42,7 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                <Text css={tw`text-center text-2xl`}>投稿する</Text>
             </Box>
             <Box css={tw`w-4/5 m-auto`}>
-               <form
-                  onSubmit={handleSubmit((data) => console.log(data))}
-               >
+               <form onSubmit={handleSubmit((data) => console.log(data))}>
                   <label>
                      店を選択
                      <Controller
@@ -53,7 +51,7 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                         control={control}
                         render={({ field: { onChange } }) => (
                            <Select
-                              placeholder={isSlect ?? "選択してください"}
+                              placeholder={isSlect ?? '選択してください'}
                               options={options}
                               onChange={(c) => {
                                  onChange(c?.value)
@@ -67,7 +65,7 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                      レポっを入力
                      <textarea
                         required
-                        maxLength={100}
+                        maxLength={60}
                         placeholder="100字まで"
                         css={tw`p-2 w-full border-2 rounded-2xl height[30vh] resize-none`}
                         {...register('review')}
@@ -80,6 +78,6 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                </form>
             </Box>
          </Box>
-      </Box >
+      </Box>
    )
 }

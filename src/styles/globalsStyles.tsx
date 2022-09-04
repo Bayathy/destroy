@@ -4,7 +4,7 @@ import { GlobalStyles as BaseStyles } from 'twin.macro'
 
 const customStyles = css(css`
    body {
-      background-color: #d8d8d4;
+      //      background-color: #d8d8d4;
       box-sizing: border-box;
       list-style: none;
       font-family: 'Inter', sans-serif;

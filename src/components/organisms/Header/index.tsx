@@ -17,17 +17,30 @@ export const Header: React.FC<HeaderProparty> = ({
 }) => {
    return (
       <header>
-         <div css={tw`w-screen height[20svh] py-2 bg-yellow-300`}>
-            <Box
-               css={tw`m-auto h-1/2 flex justify-center items-center`}
-               limited
-            >
-               <span>
-                  <Text css={tw`text-center text-4xl`}>{Headertitle}</Text>
-               </span>
-            </Box>
-            {isHomeLayout && <MenuTab rightButton={rightButton} leftButton={leftButton} />}
-         </div>
+         {isHomeLayout ? (
+            <div css={tw`w-screen height[20svh] py-2 bg-yellow-300`}>
+               <Box
+                  css={tw`m-auto h-1/2 flex justify-center items-center`}
+                  limited
+               >
+                  <span>
+                     <Text css={tw`text-center text-4xl`}>{Headertitle}</Text>
+                  </span>
+               </Box>
+               <MenuTab rightButton={rightButton} leftButton={leftButton} />
+            </div>
+         ) : (
+            <div css={tw`w-screen height[10svh] py-2 bg-yellow-300`}>
+               <Box
+                  css={tw`m-auto h-full flex justify-center items-center`}
+                  limited
+               >
+                  <span>
+                     <Text css={tw`text-center text-4xl`}>{Headertitle}</Text>
+                  </span>
+               </Box>
+            </div>
+         )}
       </header>
    )
 }

@@ -15,7 +15,7 @@ const Home: NextPage = () => {
    return (
       <HomeLayout
          Headertitle="GourMap"
-         leftButton="/"
+         leftButton="/List"
          rightButton={() => {
             setModalOpen(true)
          }}
