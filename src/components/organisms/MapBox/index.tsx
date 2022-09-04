@@ -16,6 +16,7 @@ import { Box } from '../../atoms/Box'
 import tw from 'twin.macro'
 import { Modal, Portal } from '../../molecules/Modal'
 import { ModalReviewList } from '../ModalReviewList'
+import axios from 'axios'
 
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl
@@ -25,20 +26,28 @@ L.Icon.Default.mergeOptions({
    shadowUrl: markerShadow.src
 })
 
+
 export const MapBox: React.FC = () => {
    const [location, setLocation] = useState<LatLngExpression>()
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
+   const [reviewPositions, setreviewPositions] = useState<{ position: number[]; color: string }[]>()
+   const [shopPositions, setshopPositions] = useState<{ position: number[]; color: string }[]>()
 
    useEffect(() => {
       const geo = navigator.geolocation
-      geo.getCurrentPosition((pos) => {
-         setLocation([pos.coords.latitude, pos.coords.longitude])
-      })
+      async function getInfo() {
+         await geo.getCurrentPosition(async (pos) => {
+            setLocation([pos.coords.latitude, pos.coords.longitude])
+            const res = await axios.get(`https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`)
+            setreviewPositions(res.data.reviewpositions)
+         })
+      }
+      getInfo()
    }, [])
 
    return (
       <Box css={tw`mx-auto mb-1 z-0 relative`} limited>
-         {location && (
+         {reviewPositions && (
             <MapContainer
                center={location}
                zoom={30}
@@ -49,7 +58,7 @@ export const MapBox: React.FC = () => {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                />
-               <Marker position={location}>
+               <Marker position={location!}>
                   <Popup>
                      <button
                         onClick={() => {
@@ -70,9 +79,11 @@ export const MapBox: React.FC = () => {
                      </button>
                   </Popup>
                </Marker>
-               <CircleMarker center={location} radius={3}>
-                  <Popup>Popup in CircleMarker</Popup>
-               </CircleMarker>
+               {reviewPositions!.map((index, key) => {
+                  return (
+                     <CircleMarker pathOptions={{ color: index.color }} key={key} center={[index.position[0], index.position[1]]} radius={3} />
+                  )
+               })}
             </MapContainer>
          )}
          {isModalOpen && (

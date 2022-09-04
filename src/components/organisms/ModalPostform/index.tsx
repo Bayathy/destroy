@@ -14,7 +14,7 @@ export type PostformProparty = {
 
 type FormInputs = {
    review: string
-   sid: number
+   sid: string
 }
 
 export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {

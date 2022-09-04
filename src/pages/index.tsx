@@ -3,10 +3,11 @@ import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import { MapBoxproperty } from '../components/organisms/MapBox'
 import { HomeLayout } from '../components/template/HomeLayout'
 import { fidState } from '../context/fid'
 // eslint-disable-next-line @typescript-eslint/ban-types
-const MyAwesomeMap = dynamic<{}>(
+const MyAwesomeMap = dynamic<MapBoxproperty>(
    () =>
       import('../components/organisms/MapBox').then((module) => module.MapBox),
    { ssr: false }
@@ -15,16 +16,20 @@ const MyAwesomeMap = dynamic<{}>(
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
 
-   const [fid, setfid] = useRecoilState(fidState);
+   // eslint-disable-next-line prefer-const
+   let positions: { position: number[]; color: string }[] = []
+
+   const [_, setfid] = useRecoilState(fidState);
 
    useEffect(() => {
       const geo = navigator.geolocation
       geo.getCurrentPosition((pos) => {
-         axios.get(`https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`).then(res => setfid(res.data.fid))
+         axios.get(`https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`)
+            .then(res => {
+               setfid(res.data.fid)
+            })
       })
-
-      console.log(fid)
-   })
+   }, [])
 
    return (
       <HomeLayout
@@ -39,7 +44,7 @@ const Home: NextPage = () => {
          }}
          isHomeLayout={true}
       >
-         <MyAwesomeMap />
+         <MyAwesomeMap positions={positions} />
       </HomeLayout>
    )
 }
