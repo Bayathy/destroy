@@ -39,6 +39,7 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
 function useRecoilState(fidState: any): [any, any] {
    throw new Error('Function not implemented.')
 }
