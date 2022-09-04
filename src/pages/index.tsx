@@ -1,4 +1,3 @@
-import axios from 'axios'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
@@ -15,11 +14,17 @@ const MyAwesomeMap = dynamic<{}>(
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
 
-   const [, setfid] = useRecoilState(fidState);
+   const [_, setfid] = useRecoilState(fidState);
 
    useEffect(() => {
-      axios.get("").then(res => `${process.env.SERVER_PATH}`)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      fetch("https://www.google.com/").then(res => console.log(res))
+      const geo = navigator.geolocation
+
+      // geo.getCurrentPosition((pos) =>
+      //    axios.get(`https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`)
+      //       .then(res => console.log(res))
+      //       .catch(function (error) { console.log(error) })
+      // )
    }, [])
 
    return (
