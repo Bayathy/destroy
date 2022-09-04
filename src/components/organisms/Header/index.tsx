@@ -6,12 +6,14 @@ import { MenuTab, MenuTabProparty } from '../MenuTab'
 
 export type HeaderProparty = {
    Headertitle: string
+   isHomeLayout: boolean
 } & MenuTabProparty
 
 export const Header: React.FC<HeaderProparty> = ({
    Headertitle,
    leftButton,
-   rightButton
+   rightButton,
+   isHomeLayout
 }) => {
    return (
       <header>
@@ -24,7 +26,7 @@ export const Header: React.FC<HeaderProparty> = ({
                   <Text css={tw`text-center text-4xl`}>{Headertitle}</Text>
                </span>
             </Box>
-            <MenuTab rightButton={rightButton} leftButton={leftButton} />
+            {isHomeLayout && <MenuTab rightButton={rightButton} leftButton={leftButton} />}
          </div>
       </header>
    )

@@ -23,6 +23,7 @@ export const HomeLayout: React.FC<HomeLayout> = ({
             Headertitle={Headertitle}
             leftButton={leftButton}
             rightButton={rightButton}
+            isHomeLayout={true}
          />
          <main id="root">
             {isModalOpen && (
