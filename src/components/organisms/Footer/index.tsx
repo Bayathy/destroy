@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProperty> = ({ accesses }) => {
     }
     return (
         <Box css={tw`m-auto position[fixed] bottom-0 left-0 right-0 h-auto bg-white`} limited>
-            <Bar data={data} options={options}></Bar>
+            <Bar data={data} options={options} height={100}></Bar>
         </Box>
     )
 }
