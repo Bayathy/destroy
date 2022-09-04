@@ -51,13 +51,19 @@ export const MapBox: React.FC = () => {
                />
                <Marker position={location}>
                   <Popup>
-                     <button onClick={() => { setModalOpen(true) }}>
+                     <button
+                        onClick={() => {
+                           setModalOpen(true)
+                        }}
+                     >
                         <div css={tw`width[20vh] relative`}>
                            <img
                               src="https://storage.googleapis.com/gourmap_bucket/reviewimages/92dac206-ecca-493d-983b-c05daeee7a6c.png"
                               alt="foodpic"
                            ></img>
-                           <div css={tw`m-auto w-4/5 h-auto text-center my-1 text-2xl rounded-2xl bg-blue-300`}>
+                           <div
+                              css={tw`m-auto w-4/5 h-auto text-center my-1 text-2xl rounded-2xl bg-blue-300`}
+                           >
                               test
                            </div>
                         </div>
@@ -69,7 +75,16 @@ export const MapBox: React.FC = () => {
                </CircleMarker>
             </MapContainer>
          )}
-         {isModalOpen && <Portal><Modal><ModalReviewList sid='a' closeAction={() => setModalOpen(false)} /></Modal></Portal>}
+         {isModalOpen && (
+            <Portal>
+               <Modal>
+                  <ModalReviewList
+                     sid="a"
+                     closeAction={() => setModalOpen(false)}
+                  />
+               </Modal>
+            </Portal>
+         )}
       </Box>
    )
 }

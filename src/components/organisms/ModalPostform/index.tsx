@@ -21,6 +21,15 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
    const [isSlect, setSelect] = useState<boolean>()
    const { control, register, handleSubmit } = useForm<FormInputs>()
 
+   const [uploadImage, setuploadImage] = useState<string>();
+
+   const handleImage = (event: any) => {
+      if (!(event.target.files[0] == undefined)) {
+         const image = event.target.files[0];
+         setuploadImage(window.URL.createObjectURL(image));
+      }
+   };
+
    const options = [
       { value: 1, label: '1_label' },
       { value: 2, label: '2_label' },
@@ -66,13 +75,27 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                      <textarea
                         required
                         maxLength={60}
-                        placeholder="100字まで"
-                        css={tw`p-2 w-full border-2 rounded-2xl height[30vh] resize-none`}
+                        placeholder="60字まで"
+                        css={tw`p-2 w-full border-2 rounded-2xl height[10vh] resize-none`}
                         {...register('review')}
                      />
                   </label>
+                  {
+                     uploadImage && <img css={tw`my-1 object-contain height[20vh] w-full`} src={uploadImage} alt="user upload" />
+                  }
+                  <label
+                     css={tw`bg-blue-500 block m-auto w-1/2 text-white py-1 px-3 text-center text-sm rounded-2xl`}
+                  >
+                     <input
+                        type="file"
+                        name="file"
+                        css={tw`display[none]`}
+                        onChange={handleImage}
+                     />
+                     写真を選択
+                  </label>
                   <input
-                     css={tw`m-auto h-auto py-2 mt-3 rounded-2xl w-1/2 bg-blue-500 block`}
+                     css={tw`m-auto h-auto py-2 text-white mt-3 rounded-2xl w-full bg-blue-500 block`}
                      type="submit"
                   />
                </form>
