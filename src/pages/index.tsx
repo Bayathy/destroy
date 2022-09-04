@@ -13,7 +13,8 @@ const MyAwesomeMap = dynamic<{}>(() => import('../components/organisms/MapBox').
 
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
-   const [resData, setResData] = useState<unknown>()
+   const [resAccess, setResAccess] = useState<number[]>()
+   const [reslogo, setReslogo] = useState<string>()
 
    const [, setfid] = useRecoilState(fidState)
 
@@ -24,15 +25,16 @@ const Home: NextPage = () => {
             `https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`
          )
          setfid(res.data.fid)
-         setResData(res.data)
+         setReslogo(res.data.logo)
+         setResAccess(res.data.accesses)
       })
    }, [])
 
    return (
       <>
-         {resData ?
+         {reslogo ?
             <HomeLayout
-               Headertitle={resData.logo as string}
+               Headertitle={reslogo as string}
                leftButton="/List"
                rightButton={() => {
                   setModalOpen(true)
@@ -42,7 +44,7 @@ const Home: NextPage = () => {
                   setModalOpen(false)
                }}
                isHomeLayout={true}
-               accesses={resData!.accesses!}
+               accesses={resAccess}
             >
                <MyAwesomeMap />
             </HomeLayout>
