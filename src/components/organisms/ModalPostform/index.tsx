@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import tw from 'twin.macro'
 import { Box } from '../../atoms/Box'
 import { Text } from '../../atoms/Text'
@@ -7,6 +7,9 @@ import { Icon } from '@iconify/react'
 import { Button } from '../../atoms/Button'
 import { Controller, useForm } from 'react-hook-form'
 import Select from 'react-select'
+import axios from 'axios'
+import { useRecoilState } from 'recoil'
+import { fidState } from '../../../context/fid'
 
 export type PostformProparty = {
    closeAction: () => unknown
@@ -17,12 +20,20 @@ type FormInputs = {
    sid: string
 }
 
+type shopListProperty = {
+   value: string
+   label: string
+}
+
 export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
    const [isSlect, setSelect] = useState<boolean>()
+   const [shopList, setshopList] = useState<shopListProperty[]>()
    const { control, register, handleSubmit } = useForm<FormInputs>()
-
    const [uploadImage, setuploadImage] = useState<string>()
 
+   const [fid, _] = useRecoilState(fidState)
+
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
    const handleImage = (event: any) => {
       if (!(event.target.files[0] == undefined)) {
          const image = event.target.files[0]
@@ -30,11 +41,20 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
       }
    }
 
-   const options = [
-      { value: 1, label: '1_label' },
-      { value: 2, label: '2_label' },
-      { value: 3, label: '3_label' }
-   ]
+   useEffect(() => {
+      const getInfo = async () => {
+         const res = await axios.get(`https://gourmap.herokuapp.com/reviews/?fid=${fid}`)
+         setshopList(res.data.shoplist)
+         console.log(shopList)
+      }
+      getInfo()
+   }, [])
+
+   // const options = [
+   //    { value: 1, label: '1_label' },
+   //    { value: 2, label: '2_label' },
+   //    { value: 3, label: '3_label' }
+   // ]
 
    return (
       <Box css={tw`bg-white w-10/12 h-auto rounded-2xl`} limited>
@@ -58,7 +78,7 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                         render={({ field: { onChange } }) => (
                            <Select
                               placeholder={isSlect ?? '選択してください'}
-                              options={options}
+                              options={shopList}
                               onChange={(c) => {
                                  onChange(c?.value)
                                  setSelect(true)

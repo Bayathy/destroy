@@ -45,8 +45,6 @@ export const MapBox: React.FC = () => {
       getInfo()
    }, [])
 
-   console.log(shopPositions)
-
    return (
       <Box css={tw`mx-auto mb-1 z-0 relative`} limited>
          {reviewPositions && (

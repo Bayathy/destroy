@@ -94,7 +94,7 @@ export const Footer: React.FC<FooterProperty> = ({ accesses }) => {
          }
       }
    }
-   console.log(accesses)
+
    return (
       <Box css={tw`fixed h-auto w-full bg-white flex items-center justify-center bottom-0`}>
          <Box css={tw`w-full h-full p-4`}>
