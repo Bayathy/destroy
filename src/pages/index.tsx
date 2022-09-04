@@ -1,8 +1,10 @@
 import axios from 'axios'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { HomeLayout } from '../components/template/HomeLayout'
+import { fidState } from '../context/fid'
 // eslint-disable-next-line @typescript-eslint/ban-types
 const MyAwesomeMap = dynamic<{}>(
    () =>
@@ -39,16 +41,4 @@ const Home: NextPage = () => {
 }
 
 export default Home
-
-function useRecoilState(fidState: any): [any, any] {
-   throw new Error('Function not implemented.')
-}
-
-function fidState(fidState: any): [any, any] {
-   throw new Error('Function not implemented.')
-}
-
-function useEffect(arg0: () => void, arg1: never[]) {
-   throw new Error('Function not implemented.')
-}
 
