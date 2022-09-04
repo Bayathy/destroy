@@ -7,17 +7,24 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src/**/* && prettier src/**/*",
-    "fix": "eslint  src/**/* --fix && prettier -w src/**/*"
+    "fix": "eslint src/**/* --fix && prettier -w src/**/*",
+    "format": "prettier -w src/**/*"
   },
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.4",
+    "leaflet": "^1.8.0",
     "next": "12.2.5",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.34.2",
+    "react-leaflet": "^4.0.2",
+    "react-select": "^5.4.0"
   },
   "devDependencies": {
+    "@iconify/react": "^3.2.2",
+    "@types/leaflet": "^1.7.11",
     "@types/node": "18.7.14",
     "@types/react": "18.0.18",
     "@types/react-dom": "18.0.6",

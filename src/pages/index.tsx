@@ -1,10 +1,33 @@
 import type { NextPage } from 'next'
+import dynamic from 'next/dynamic'
+import { useState } from 'react'
+import { HomeLayout } from '../components/template/HomeLayout'
+// eslint-disable-next-line @typescript-eslint/ban-types
+const MyAwesomeMap = dynamic<{}>(
+   () =>
+      import('../components/organisms/MapBox').then((module) => module.MapBox),
+   { ssr: false }
+)
 
 const Home: NextPage = () => {
-  return (
-    <div >
-    </div>
-  )
+   const [isModalOpen, setModalOpen] = useState<boolean>(false)
+
+   return (
+      <HomeLayout
+         Headertitle="GourMap"
+         leftButton="/List"
+         rightButton={() => {
+            setModalOpen(true)
+         }}
+         isModalOpen={isModalOpen}
+         closeAction={() => {
+            setModalOpen(false)
+         }}
+         isHomeLayout={true}
+      >
+         <MyAwesomeMap />
+      </HomeLayout>
+   )
 }
 
 export default Home
