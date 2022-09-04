@@ -10,7 +10,7 @@ export const Anchor: React.FC<Component<'a'> & { href: string }> = ({
    ...rest
 }) => {
    return (
-      <Link passHref href={href}>
+      <Link href={href}>
          <a {...rest} css={css}>
             {children}
          </a>
