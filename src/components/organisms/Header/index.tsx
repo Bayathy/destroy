@@ -10,25 +10,15 @@ export type HeaderProparty = {
    isHomeLayout: boolean
 } & MenuTabProparty
 
-export const Header: React.FC<HeaderProparty> = ({
-   Headertitle,
-   leftButton,
-   rightButton,
-   isHomeLayout
-}) => {
+export const Header: React.FC<HeaderProparty> = ({ Headertitle, leftButton, rightButton, isHomeLayout }) => {
    return (
       <header>
          {isHomeLayout ? (
             <div css={tw`w-screen height[20vh] py-2 bg-yellow-300`}>
-               <Box
-                  css={tw`m-auto h-1/2 flex justify-center items-center`}
-                  limited
-               >
+               <Box css={tw`m-auto h-1/2 flex justify-center items-center`} limited>
                   <Anchor href={'/'}>
                      <span>
-                        <Text css={tw`text-center text-4xl`}>
-                           {Headertitle}
-                        </Text>
+                        <Text css={tw`text-center text-4xl`}>{Headertitle}</Text>
                      </span>
                   </Anchor>
                </Box>
@@ -36,15 +26,10 @@ export const Header: React.FC<HeaderProparty> = ({
             </div>
          ) : (
             <div css={tw`w-screen height[10svh] py-2 bg-yellow-300`}>
-               <Box
-                  css={tw`m-auto h-full flex justify-center items-center`}
-                  limited
-               >
+               <Box css={tw`m-auto h-full flex justify-center items-center`} limited>
                   <Anchor href={'/'}>
                      <span>
-                        <Text css={tw`text-center text-4xl`}>
-                           {Headertitle}
-                        </Text>
+                        <Text css={tw`text-center text-4xl`}>{Headertitle}</Text>
                      </span>
                   </Anchor>
                </Box>

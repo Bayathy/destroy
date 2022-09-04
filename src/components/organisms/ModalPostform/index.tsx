@@ -40,10 +40,7 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
       <Box css={tw`bg-white w-10/12 h-auto rounded-2xl`} limited>
          <Box css={tw`flex flex-col h-full items-center pb-4`}>
             <Box css={tw`flex justify-end w-full`}>
-               <Button
-                  css={tw`p-3 bg-yellow-100 rounded-full mr-2 mt-2`}
-                  onclick={closeAction}
-               >
+               <Button css={tw`p-3 bg-yellow-100 rounded-full mr-2 mt-2`} onclick={closeAction}>
                   <Icon icon="akar-icons:cross" />
                </Button>
             </Box>
@@ -81,21 +78,10 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                      />
                   </label>
                   {uploadImage && (
-                     <img
-                        css={tw`my-1 object-contain height[20vh] w-full`}
-                        src={uploadImage}
-                        alt="user upload"
-                     />
+                     <img css={tw`my-1 object-contain height[20vh] w-full`} src={uploadImage} alt="user upload" />
                   )}
-                  <label
-                     css={tw`bg-blue-500 block m-auto w-1/2 text-white py-1 px-3 text-center text-sm rounded-2xl`}
-                  >
-                     <input
-                        type="file"
-                        name="file"
-                        css={tw`display[none]`}
-                        onChange={handleImage}
-                     />
+                  <label css={tw`bg-blue-500 block m-auto w-1/2 text-white py-1 px-3 text-center text-sm rounded-2xl`}>
+                     <input type="file" name="file" css={tw`display[none]`} onChange={handleImage} />
                      写真を選択
                   </label>
                   <input

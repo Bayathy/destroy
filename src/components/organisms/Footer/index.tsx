@@ -2,15 +2,7 @@ import React from 'react'
 import { Box } from '../../atoms/Box'
 import tw from 'twin.macro'
 import { Bar } from 'react-chartjs-2'
-import {
-   Chart as ChartJS,
-   CategoryScale,
-   LinearScale,
-   BarElement,
-   Title,
-   Tooltip,
-   Legend
-} from 'chart.js'
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
@@ -102,11 +94,9 @@ export const Footer: React.FC<FooterProperty> = ({ accesses }) => {
          }
       }
    }
+   console.log(accesses)
    return (
-      <Box
-         css={tw`m-auto position[fixed] bottom-0 left-0 right-0 h-auto bg-white`}
-         limited
-      >
+      <Box css={tw`m-auto position[fixed] bottom-0 left-0 right-0 h-auto bg-white`} limited>
          <Bar data={data} options={options} height={100}></Bar>
       </Box>
    )

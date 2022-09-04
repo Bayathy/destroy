@@ -6,29 +6,23 @@ import { useRecoilState } from 'recoil'
 import { HomeLayout } from '../components/template/HomeLayout'
 import { fidState } from '../context/fid'
 // eslint-disable-next-line @typescript-eslint/ban-types
-const MyAwesomeMap = dynamic<{}>(
-   () =>
-      import('../components/organisms/MapBox').then((module) => module.MapBox),
-   { ssr: false }
-)
+const MyAwesomeMap = dynamic<{}>(() => import('../components/organisms/MapBox').then((module) => module.MapBox), {
+   ssr: false
+})
 
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
-   const [accesses, setacceces] = useState<number[]>()
+   const [accesses, setAcceces] = useState<number[]>()
 
    const [, setfid] = useRecoilState(fidState)
 
    useEffect(() => {
       const geo = navigator.geolocation
       geo.getCurrentPosition(async (pos) => {
-         await axios
-            .get(
-               `https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`
-            )
-            .then((res) => {
-               setfid(res.data.fid)
-               setacceces(res.data.accesses)
-            })
+         const res = await axios.get(`https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`)
+         setfid(res.data.fid)
+         console.log(res.data.accesses)
+         setAcceces(res.data.accesses)
       })
    }, [])
 

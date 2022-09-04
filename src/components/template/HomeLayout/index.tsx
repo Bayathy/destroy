@@ -37,12 +37,7 @@ export const HomeLayout: React.FC<HomeLayout> = ({
             )}
             {children}
          </main>
-         <Footer
-            accesses={[
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0,
-               0, 8, 0
-            ]}
-         />
+         <Footer accesses={[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 8, 0]} />
       </>
    )
 }
