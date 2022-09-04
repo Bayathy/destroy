@@ -1,3 +1,4 @@
+import axios from 'axios'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
@@ -11,6 +12,13 @@ const MyAwesomeMap = dynamic<{}>(
 
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
+
+   const [, setfid] = useRecoilState(fidState);
+
+   useEffect(() => {
+      axios.get("").then(res => `${process.env.SERVER_PATH}`)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [])
 
    return (
       <HomeLayout
@@ -31,3 +39,15 @@ const Home: NextPage = () => {
 }
 
 export default Home
+function useRecoilState(fidState: any): [any, any] {
+   throw new Error('Function not implemented.')
+}
+
+function fidState(fidState: any): [any, any] {
+   throw new Error('Function not implemented.')
+}
+
+function useEffect(arg0: () => void, arg1: never[]) {
+   throw new Error('Function not implemented.')
+}
+
