@@ -14,6 +14,8 @@ import markerIcon from 'leaflet/dist/images/marker-icon.png'
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 import { Box } from '../../atoms/Box'
 import tw from 'twin.macro'
+import { Modal, Portal } from '../../molecules/Modal'
+import { ModalReviewList } from '../ModalReviewList'
 
 // @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl
@@ -24,7 +26,8 @@ L.Icon.Default.mergeOptions({
 })
 
 export const MapBox: React.FC = () => {
-   const [location, setLocation] = useState<LatLngExpression>([35.6555, 139.76])
+   const [location, setLocation] = useState<LatLngExpression>()
+   const [isModalOpen, setModalOpen] = useState<boolean>(false)
 
    useEffect(() => {
       const geo = navigator.geolocation
@@ -48,7 +51,7 @@ export const MapBox: React.FC = () => {
                />
                <Marker position={location}>
                   <Popup>
-                     <button onClick={() => { alert("aaa") }}>
+                     <button onClick={() => { setModalOpen(true) }}>
                         <div css={tw`width[20vh] relative`}>
                            <img
                               src="https://storage.googleapis.com/gourmap_bucket/reviewimages/92dac206-ecca-493d-983b-c05daeee7a6c.png"
@@ -66,6 +69,7 @@ export const MapBox: React.FC = () => {
                </CircleMarker>
             </MapContainer>
          )}
+         {isModalOpen && <Portal><Modal><ModalReviewList sid='a' closeAction={() => setModalOpen(false)} /></Modal></Portal>}
       </Box>
    )
 }
