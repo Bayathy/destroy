@@ -18,7 +18,7 @@ type FormInputs = {
 }
 
 export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
-   const [isSlect, setSelect] = useState<boolean>(false)
+   const [isSlect, setSelect] = useState<boolean>()
    const { control, register, handleSubmit } = useForm<FormInputs>()
 
    const options = [
@@ -28,8 +28,8 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
    ]
 
    return (
-      <Box css={tw`bg-white w-4/5 h-4/5 rounded-2xl`} limited>
-         <Box css={tw`flex flex-col h-full items-center`}>
+      <Box css={tw`bg-white w-10/12 h-auto rounded-2xl`} limited>
+         <Box css={tw`flex flex-col h-full items-center pb-4`}>
             <Box css={tw`flex justify-end w-full`}>
                <Button
                   css={tw`p-3 bg-yellow-100 rounded-full mr-2 mt-2`}
@@ -41,51 +41,45 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
             <Box>
                <Text css={tw`text-center text-2xl`}>投稿する</Text>
             </Box>
-            <form
-               css={tw`w-4/5 h-2/3`}
-               onSubmit={handleSubmit((data) => console.log(data))}
-            >
-               <label>
-                  店を選択
-                  <Controller
-                     name="sid"
-                     rules={{ required: true }}
-                     control={control}
-                     render={({ field: { onChange } }) => (
-                        <Select
-                           options={options}
-                           onChange={(c) => {
-                              onChange(c?.value)
-                              setSelect(true)
-                           }}
-                        />
-                     )}
-                  />
-               </label>
-               <label>
-                  レポっを入力
-                  <textarea
-                     required
-                     maxLength={100}
-                     placeholder="100字まで"
-                     css={tw`p-2 w-full border-2 rounded-2xl h-1/2 resize-none`}
-                     {...register('review')}
-                  />
-               </label>
-               {isSlect ? (
+            <Box css={tw`w-4/5 m-auto`}>
+               <form
+                  onSubmit={handleSubmit((data) => console.log(data))}
+               >
+                  <label>
+                     店を選択
+                     <Controller
+                        name="sid"
+                        rules={{ required: true }}
+                        control={control}
+                        render={({ field: { onChange } }) => (
+                           <Select
+                              placeholder={isSlect ?? "選択してください"}
+                              options={options}
+                              onChange={(c) => {
+                                 onChange(c?.value)
+                                 setSelect(true)
+                              }}
+                           />
+                        )}
+                     />
+                  </label>
+                  <label>
+                     レポっを入力
+                     <textarea
+                        required
+                        maxLength={100}
+                        placeholder="100字まで"
+                        css={tw`p-2 w-full border-2 rounded-2xl height[30vh] resize-none`}
+                        {...register('review')}
+                     />
+                  </label>
                   <input
-                     css={tw`m-auto mt-2 py-2 rounded-2xl w-1/2 bg-blue-500 block`}
+                     css={tw`m-auto h-auto py-2 mt-3 rounded-2xl w-1/2 bg-blue-500 block`}
                      type="submit"
                   />
-               ) : (
-                  <input
-                     css={tw`m-auto mt-2 py-2 rounded-2xl w-1/2 block bg-gray-200`}
-                     type="submit"
-                     disabled
-                  />
-               )}
-            </form>
+               </form>
+            </Box>
          </Box>
-      </Box>
+      </Box >
    )
 }
