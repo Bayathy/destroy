@@ -15,7 +15,8 @@ export const HomeLayout: React.FC<HomeLayout> = ({
    Headertitle,
    leftButton,
    rightButton,
-   closeAction
+   closeAction,
+   isHomeLayout
 }) => {
    return (
       <>
@@ -23,7 +24,7 @@ export const HomeLayout: React.FC<HomeLayout> = ({
             Headertitle={Headertitle}
             leftButton={leftButton}
             rightButton={rightButton}
-            isHomeLayout={true}
+            isHomeLayout={isHomeLayout}
          />
          <main id="root">
             {isModalOpen && (

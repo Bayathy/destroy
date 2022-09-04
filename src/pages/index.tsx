@@ -23,6 +23,7 @@ const Home: NextPage = () => {
          closeAction={() => {
             setModalOpen(false)
          }}
+         isHomeLayout={true}
       >
          <MyAwesomeMap />
       </HomeLayout>
