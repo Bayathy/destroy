@@ -5,7 +5,7 @@ import { Box } from '../../atoms/Box'
 import { Text } from '../../atoms/Text'
 import { Icon } from '@iconify/react'
 import { Button } from '../../atoms/Button'
-import { Controller, useForm } from 'react-hook-form'
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import Select from 'react-select'
 import axios from 'axios'
 import { useRecoilState } from 'recoil'
@@ -25,6 +25,7 @@ type shopListProperty = {
    label: string
 }
 
+
 export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
    const [isSlect, setSelect] = useState<boolean>()
    const [shopList, setshopList] = useState<shopListProperty[]>()
@@ -32,6 +33,22 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
    const [uploadImage, setuploadImage] = useState<string>()
 
    const [fid, _] = useRecoilState(fidState)
+
+   const onSubmit: SubmitHandler<FormInputs> = data => {
+      const geo = navigator.geolocation
+      geo.getCurrentPosition((pos) =>
+         axios.post("https://gourmap.herokuapp.com/review", {
+            fid: fid,
+            text: data.review,
+            sid: data.sid,
+            position: [pos.coords.latitude, pos.coords.longitude],
+            haspicture: false
+         }).then((res) => {
+            console.log(res.data)
+            closeAction()
+         })
+      )
+   }
 
    // eslint-disable-next-line @typescript-eslint/no-explicit-any
    const handleImage = (event: any) => {
@@ -50,12 +67,6 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
       getInfo()
    }, [])
 
-   // const options = [
-   //    { value: 1, label: '1_label' },
-   //    { value: 2, label: '2_label' },
-   //    { value: 3, label: '3_label' }
-   // ]
-
    return (
       <Box css={tw`bg-white w-10/12 h-auto rounded-2xl`} limited>
          <Box css={tw`flex flex-col h-full items-center pb-4`}>
@@ -68,7 +79,7 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
                <Text css={tw`text-center text-2xl`}>投稿する</Text>
             </Box>
             <Box css={tw`w-4/5 m-auto`}>
-               <form onSubmit={handleSubmit((data) => console.log(data))}>
+               <form onSubmit={handleSubmit(onSubmit)}>
                   <label>
                      店を選択
                      <Controller
