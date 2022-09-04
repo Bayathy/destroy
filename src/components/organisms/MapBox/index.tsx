@@ -35,7 +35,11 @@ export const MapBox: React.FC = () => {
                `https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`
             )
             setreviewPositions(res.data.reviewpositions)
-            setshopPositions(res.data.shops.map((index: { position: any[]; color: any; name: any }) => { return { position: [index.position[0], index.position[1]], color: index.color, name: index.name } }))
+            setshopPositions(
+               res.data.shops.map((index: { position: any[]; color: any; name: any }) => {
+                  return { position: [index.position[0], index.position[1]], color: index.color, name: index.name }
+               })
+            )
          })
       }
       getInfo()
@@ -52,33 +56,29 @@ export const MapBox: React.FC = () => {
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                />
                <Marker position={location!}>
-                  <Popup>
-                     現在地
-                  </Popup>
+                  <Popup>現在地</Popup>
                </Marker>
-               {
-                  shopPositions?.map((index, key) => (
-                     <Marker key={key} position={[index.position[0], index.position[1]]}>
-                        <Popup>
-                           <button
-                              onClick={() => {
-                                 setModalOpen(true)
-                              }}
-                           >
-                              <div css={tw`width[20vh] relative`}>
-                                 <img
-                                    src="https://storage.googleapis.com/gourmap_bucket/reviewimages/92dac206-ecca-493d-983b-c05daeee7a6c.png"
-                                    alt="foodpic"
-                                 ></img>
-                                 <div css={tw`m-auto w-4/5 h-auto text-center my-1 text-2xl rounded-2xl bg-blue-300`}>
-                                    {index.name}
-                                 </div>
+               {shopPositions?.map((index, key) => (
+                  <Marker key={key} position={[index.position[0], index.position[1]]}>
+                     <Popup>
+                        <button
+                           onClick={() => {
+                              setModalOpen(true)
+                           }}
+                        >
+                           <div css={tw`width[20vh] relative`}>
+                              <img
+                                 src="https://storage.googleapis.com/gourmap_bucket/reviewimages/92dac206-ecca-493d-983b-c05daeee7a6c.png"
+                                 alt="foodpic"
+                              ></img>
+                              <div css={tw`m-auto w-4/5 h-auto text-center my-1 text-2xl rounded-2xl`}>
+                                 {index.name}
                               </div>
-                           </button>
-                        </Popup>
-                     </Marker>
-                  ))
-               }
+                           </div>
+                        </button>
+                     </Popup>
+                  </Marker>
+               ))}
                {reviewPositions!.map((index, key) => {
                   return (
                      <CircleMarker
@@ -90,17 +90,14 @@ export const MapBox: React.FC = () => {
                   )
                })}
             </MapContainer>
-         )
-         }
-         {
-            isModalOpen && (
-               <Portal>
-                  <Modal>
-                     <ModalReviewList sid="a" closeAction={() => setModalOpen(false)} />
-                  </Modal>
-               </Portal>
-            )
-         }
-      </Box >
+         )}
+         {isModalOpen && (
+            <Portal>
+               <Modal>
+                  <ModalReviewList sid="a" closeAction={() => setModalOpen(false)} />
+               </Modal>
+            </Portal>
+         )}
+      </Box>
    )
 }

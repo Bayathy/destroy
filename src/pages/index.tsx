@@ -12,36 +12,41 @@ const MyAwesomeMap = dynamic<{}>(() => import('../components/organisms/MapBox').
 
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
-   const [accesses, setAcceces] = useState<number[]>()
+   const [resData, setResData] = useState<any>()
 
    const [, setfid] = useRecoilState(fidState)
 
    useEffect(() => {
       const geo = navigator.geolocation
       geo.getCurrentPosition(async (pos) => {
-         const res = await axios.get(`https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`)
+         const res = await axios.get(
+            `https://gourmap.herokuapp.com/location?lat=${pos.coords.latitude}&lng=${pos.coords.longitude}`
+         )
          setfid(res.data.fid)
-         console.log(res.data.accesses)
-         setAcceces(res.data.accesses)
+         setResData(res.data)
       })
    }, [])
 
    return (
-      <HomeLayout
-         Headertitle="GourMap"
-         leftButton="/List"
-         rightButton={() => {
-            setModalOpen(true)
-         }}
-         isModalOpen={isModalOpen}
-         closeAction={() => {
-            setModalOpen(false)
-         }}
-         isHomeLayout={true}
-         accesses={accesses!}
-      >
-         <MyAwesomeMap />
-      </HomeLayout>
+      <>
+         {resData && (
+            <HomeLayout
+               Headertitle={resData.logo as string}
+               leftButton="/List"
+               rightButton={() => {
+                  setModalOpen(true)
+               }}
+               isModalOpen={isModalOpen}
+               closeAction={() => {
+                  setModalOpen(false)
+               }}
+               isHomeLayout={true}
+               accesses={resData.accesses!}
+            >
+               <MyAwesomeMap />
+            </HomeLayout>
+         )}
+      </>
    )
 }
 
