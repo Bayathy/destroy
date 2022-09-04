@@ -17,9 +17,12 @@ const Home: NextPage = () => {
          Headertitle="GorouMap"
          leftButton="/"
          rightButton={() => {
-            setModalOpen(!isModalOpen)
+            setModalOpen(true)
          }}
          isModalOpen={isModalOpen}
+         closeAction={() => {
+            setModalOpen(false)
+         }}
       >
          <MyAwesomeMap />
       </HomeLayout>

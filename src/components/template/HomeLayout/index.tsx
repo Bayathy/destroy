@@ -1,19 +1,21 @@
 import React from 'react'
 import { Modal, Portal } from '../../molecules/Modal'
 import { Header, HeaderProparty } from '../../organisms/Header'
-import { ModalPostform } from '../../organisms/ModalPostform'
+import { ModalPostform, PostformProparty } from '../../organisms/ModalPostform'
 
 export type HomeLayout = {
    children: React.ReactNode
    isModalOpen: boolean
-} & HeaderProparty
+} & HeaderProparty &
+   PostformProparty
 
 export const HomeLayout: React.FC<HomeLayout> = ({
    children,
    isModalOpen,
    Headertitle,
    leftButton,
-   rightButton
+   rightButton,
+   closeAction
 }) => {
    return (
       <>
@@ -26,7 +28,7 @@ export const HomeLayout: React.FC<HomeLayout> = ({
             {isModalOpen && (
                <Portal>
                   <Modal>
-                     <ModalPostform />
+                     <ModalPostform closeAction={closeAction} />
                   </Modal>
                </Portal>
             )}
