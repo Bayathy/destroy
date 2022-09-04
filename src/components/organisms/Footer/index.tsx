@@ -27,11 +27,12 @@ export type FooterProperty = {
 
 export const Footer: React.FC<FooterProperty> = ({ accesses }) => {
     const data = {
-        labels:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
+        labels:["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"],
         datasets:[
             {
                 data:accesses,
-                backgroundColor:"#669df6"
+                backgroundColor:"#669df6",
+                minBarLength:5
             }
         ]
     }
@@ -40,6 +41,9 @@ export const Footer: React.FC<FooterProperty> = ({ accesses }) => {
         borderSkipped:false,
         responsive: true,
         plugins: {
+            decimation:{
+                enabled:true
+            },
             datalabels:{
                 display:false
             },
@@ -52,14 +56,31 @@ export const Footer: React.FC<FooterProperty> = ({ accesses }) => {
         },
         scales: {
             x: {
+                display:true,
+                ticks:{
+                    major:{
+                        enabled:true
+                    }
+                },
+                title:{
+                    display:false
+                },
                 grid: {
                     display: false
                 }
             },
             y: {
+                display:false,
+                ticks:{
+                    display:false
+                },
+                title:{
+                    display:false
+                },
                 grid: {
                     display: false
-                }
+                },
+                suggestedMax:3
             }
         },
     }
