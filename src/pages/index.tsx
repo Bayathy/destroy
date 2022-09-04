@@ -1,7 +1,10 @@
+import axios from 'axios'
 import type { NextPage } from 'next'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { HomeLayout } from '../components/template/HomeLayout'
+import { fidState } from '../context/fid'
 // eslint-disable-next-line @typescript-eslint/ban-types
 const MyAwesomeMap = dynamic<{}>(
    () =>
@@ -11,6 +14,13 @@ const MyAwesomeMap = dynamic<{}>(
 
 const Home: NextPage = () => {
    const [isModalOpen, setModalOpen] = useState<boolean>(false)
+
+   const [, setfid] = useRecoilState(fidState);
+
+   useEffect(() => {
+      axios.get("").then(res => `${process.env.SERVER_PATH}`)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [])
 
    return (
       <HomeLayout
@@ -31,3 +41,4 @@ const Home: NextPage = () => {
 }
 
 export default Home
+

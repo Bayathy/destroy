@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css'
 import { RecoilRoot } from 'recoil'
 
 function MyApp({ Component, pageProps }: AppProps) {
+
    return (
       <>
          <RecoilRoot>
