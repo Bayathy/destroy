@@ -4,7 +4,7 @@ import { ListLayout } from '../components/template/ListLayout'
 
 const List: NextPage = () => {
    return (
-      <ListLayout Headertitle="GourMap" isHomeLayout={false}>
+      <ListLayout Headertitle="れぽみる" isHomeLayout={false}>
          <CardList />
       </ListLayout>
    )

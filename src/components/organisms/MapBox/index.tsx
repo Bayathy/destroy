@@ -66,7 +66,7 @@ export const MapBox: React.FC = () => {
                         >
                            <div css={tw`width[20vh] relative`}>
                               <img
-                                 src="https://storage.googleapis.com/gourmap_bucket/reviewimages/92dac206-ecca-493d-983b-c05daeee7a6c.png"
+                                 src="https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/704422.jpeg"
                                  alt="foodpic"
                               ></img>
                               <div css={tw`m-auto w-4/5 h-auto text-center my-1 text-2xl rounded-2xl`}>

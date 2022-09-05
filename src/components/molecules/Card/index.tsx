@@ -19,9 +19,7 @@ export const Card: React.FC<CardProparty> = ({ text, storename }) => {
          </div>
          <div css={tw`relative`}>
             <Image
-               src={
-                  'https://storage.googleapis.com/gourmap_bucket/reviewimages/92dac206-ecca-493d-983b-c05daeee7a6c.png'
-               }
+               src={'https://park.ajinomoto.co.jp/wp-content/uploads/2018/03/704422.jpeg'}
                objectFit={'contain'}
                layout={'fill'}
             />
