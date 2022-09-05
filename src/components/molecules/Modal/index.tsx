@@ -4,17 +4,10 @@ import tw from 'twin.macro'
 import { Component } from '../../../model/component'
 import { Box } from '../../atoms/Box'
 
-export const Modal: React.FC<Component<'div'>> = ({
-   children,
-   css,
-   ...rest
-}) => {
+export const Modal: React.FC<Component<'div'>> = ({ children, css, ...rest }) => {
    return (
       <Box
-         css={[
-            tw`fixed w-screen flex items-center justify-center h-screen inset-0 m-auto bg-black/[.6]`,
-            css
-         ]}
+         css={[tw`fixed w-screen flex items-center justify-center h-screen inset-0 m-auto bg-black/[.6]`, css]}
          {...rest}
       >
          {children}
@@ -22,9 +15,7 @@ export const Modal: React.FC<Component<'div'>> = ({
    )
 }
 
-export const Portal: React.FC<{ children: React.ReactNode }> = ({
-   children
-}) => {
+export const Portal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
    const [showPortal, setShowPortal] = useState(false)
 
    useEffect(() => {

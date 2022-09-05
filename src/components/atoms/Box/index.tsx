@@ -2,12 +2,7 @@ import React from 'react'
 import { Component } from '../../../model/component'
 import tw from 'twin.macro'
 
-export const Box: React.FC<Component<'div'> & { limited?: boolean }> = ({
-   limited,
-   children,
-   css,
-   ...rest
-}) => {
+export const Box: React.FC<Component<'div'> & { limited?: boolean }> = ({ limited, children, css, ...rest }) => {
    return (
       <>
          {limited ? (

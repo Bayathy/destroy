@@ -2,12 +2,13 @@ import React from 'react'
 import { Modal, Portal } from '../../molecules/Modal'
 import { Header, HeaderProparty } from '../../organisms/Header'
 import { ModalPostform, PostformProparty } from '../../organisms/ModalPostform'
-
+import { Footer, FooterProperty } from '../../organisms/Footer'
 export type HomeLayout = {
    children: React.ReactNode
    isModalOpen: boolean
 } & HeaderProparty &
    PostformProparty
+   & FooterProperty
 
 export const HomeLayout: React.FC<HomeLayout> = ({
    children,
@@ -16,7 +17,8 @@ export const HomeLayout: React.FC<HomeLayout> = ({
    leftButton,
    rightButton,
    closeAction,
-   isHomeLayout
+   isHomeLayout,
+   accesses
 }) => {
    return (
       <>
@@ -36,6 +38,7 @@ export const HomeLayout: React.FC<HomeLayout> = ({
             )}
             {children}
          </main>
+         <Footer accesses={accesses} />
       </>
    )
 }
