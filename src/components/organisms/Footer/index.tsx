@@ -102,4 +102,4 @@ export const Footer: React.FC<FooterProperty> = ({ accesses }) => {
          </Box>
       </Box>
    )
-} 
+}

@@ -25,7 +25,6 @@ type shopListProperty = {
    label: string
 }
 
-
 export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
    const [isSlect, setSelect] = useState<boolean>()
    const [shopList, setshopList] = useState<shopListProperty[]>()
@@ -34,19 +33,21 @@ export const ModalPostform: React.FC<PostformProparty> = ({ closeAction }) => {
 
    const [fid, _] = useRecoilState(fidState)
 
-   const onSubmit: SubmitHandler<FormInputs> = data => {
+   const onSubmit: SubmitHandler<FormInputs> = (data) => {
       const geo = navigator.geolocation
       geo.getCurrentPosition((pos) =>
-         axios.post("https://gourmap.herokuapp.com/review", {
-            fid: fid,
-            text: data.review,
-            sid: data.sid,
-            position: [pos.coords.latitude, pos.coords.longitude],
-            haspicture: false
-         }).then((res) => {
-            console.log(res.data)
-            closeAction()
-         })
+         axios
+            .post('https://gourmap.herokuapp.com/review', {
+               fid: fid,
+               text: data.review,
+               sid: data.sid,
+               position: [pos.coords.latitude, pos.coords.longitude],
+               haspicture: false
+            })
+            .then((res) => {
+               console.log(res.data)
+               closeAction()
+            })
       )
    }
 

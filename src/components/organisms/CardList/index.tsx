@@ -7,9 +7,9 @@ import { fidState } from '../../../context/fid'
 import { Box } from '../../atoms/Box'
 import { Card } from '../../molecules/Card'
 
-
 export const CardList: React.FC = () => {
-   const [reviewList, setReviewList] = useState<{ sid: string, text: string, shopname: string }[]>()
+   const [reviewList, setReviewList] = useState<{ sid: string; text: string; shopname: string }[]>()
+   const [shopList, setShopList] = useState<{ value: string; shopname: string }[]>()
    const [sortId, setsottId] = useState<string>()
 
    const [fid, _] = useRecoilState(fidState)
@@ -18,33 +18,39 @@ export const CardList: React.FC = () => {
       const getInfo = async () => {
          console.log(fid)
          const res = await axios.get(`https://gourmap.herokuapp.com/reviews/?fid=${fid}`)
-         setReviewList(res.data.reviews.map((index: { sid: any; text: any; shopname: any }) => ({ sid: index.sid, text: index.text, shopname: index.shopname })))
+         setReviewList(
+            res.data.reviews.map((index: { sid: any; text: any; shopname: any }) => ({
+               sid: index.sid,
+               text: index.text,
+               shopname: index.shopname
+            }))
+         )
+         setShopList(
+            res.data.shoplist.map((index: { value: any; label: any }) => ({ value: index.value, label: index.label }))
+         )
          console.log(reviewList)
       }
       getInfo()
    }, [])
 
-
    return (
       <Box css={tw`m-auto`} limited>
          <Select
-            options={reviewList?.map(index => ({ value: index.sid, label: index.shopname }))}
+            options={shopList}
             onChange={(c) => {
                // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
                setsottId(c?.value!)
             }}
             isClearable
          />
-         {
-            !!reviewList && reviewList.flatMap((index, key) =>
+         {!!reviewList &&
+            reviewList.flatMap((index, key) =>
                !sortId ? (
                   <Card key={key} storename={index.shopname} text={index.text} />
                ) : index.sid === sortId ? (
                   <Card key={key} storename={index.shopname} text={index.text} />
                ) : undefined
-            )
-         }
-
+            )}
       </Box>
    )
 }
