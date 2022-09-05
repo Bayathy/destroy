@@ -32,7 +32,7 @@ const Home: NextPage = () => {
 
    return (
       <>
-         {reslogo ?
+         {reslogo ? (
             <HomeLayout
                Headertitle={reslogo as string}
                leftButton="/List"
@@ -48,8 +48,11 @@ const Home: NextPage = () => {
             >
                <MyAwesomeMap />
             </HomeLayout>
-            : <div css={tw`w-screen h-screen flex justify-center items-center`}><p>Loading</p></div>
-         }
+         ) : (
+            <div css={tw`w-screen h-screen flex justify-center items-center`}>
+               <p>Loading</p>
+            </div>
+         )}
       </>
    )
 }
